@@ -64,7 +64,7 @@ class Usb(Escpos):
         i = 0
         while True:
             try:
-                #if not self.hw_device.is_kernel_driver_active(self.interface):
+                if not self.hw_device.is_kernel_driver_active(self.interface):
                     usb.util.release_interface(self.hw_device, self.interface)
                     self.hw_device.attach_kernel_driver(self.interface)
                     usb.util.dispose_resources(self.hw_device)
