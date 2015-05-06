@@ -708,9 +708,9 @@ class Escpos:
                 self.cashdraw(2)
                 self.cashdraw(5)
             if not 'cut' in root.attrib or root.attrib['cut'] == 'true' :
-                if self.slip_sheet_mode:
-                    self._raw(CTL_FF)
-                else:
+                #if self.slip_sheet_mode:
+                #    self._raw(CTL_FF)
+                #else:
                     self.cut()
 
         except Exception as e:

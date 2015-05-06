@@ -1,21 +1,19 @@
 test_temp = """
     <receipt>
-        <h1>Receipt!</h1>
-        <h2>div,span,p,ul,ol are also supported</h2>:w
+        <h1>Muqueca</h1>
+        <h2>Consumo:</h2>
         <line>
-            <left>Product</left>
-            <right>0.15</right>
+            <left>Feijoada</left>
+            <right>13900.00</right>
         </line>
         <hr />
         <line size='double-height'>
             <left>TOTAL</left>
-            <right>0.15</right>
+            <right>13900.00</right>
         </line>
         <barcode encoding='ean13'>
             5449000000996
         </barcode>
-        <cashdraw /> 
-        <cut />
     </receipt>
 """
 from xmlescpos.exceptions import *
@@ -27,7 +25,8 @@ import sys
 pp = pprint.PrettyPrinter(indent=4)
 
 try:
-    printer = Usb(0x04b8,0x0202)
+    #printer = Usb(0x04b8,0x0202)
+    printer = Usb(0x1d90,0x2060)
 
     printer._raw('\x1D\x28\x47\x02\x00\x30\x04');
     printer._raw('AAAA');
@@ -43,7 +42,10 @@ try:
     printer._raw('CCCC');
     printer._raw('\x1D\x28\x47\x02\x00\x54\x01');
 
-    #printer.receipt(test_temp)
+    printer._raw('\n\n');
+
+    printer.receipt(test_temp)
+
     pp.pprint(printer.get_printer_status())
 
 except NoDeviceError as e:
