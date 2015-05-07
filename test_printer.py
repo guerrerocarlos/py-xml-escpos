@@ -58,5 +58,5 @@ except NoStatusError as e:
     print "Impossible to get the status of the printer %s" % str(e)
 finally:
     pass
-    #printer.close()
+    printer.close()
 

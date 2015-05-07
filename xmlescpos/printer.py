@@ -140,9 +140,9 @@ class Usb(Escpos):
 
     def __del__(self):
         """ Release USB interface """
-        #if self.hw_device:
-        #    self.close()
-        #self.hw_device = None
+        if self.hw_device:
+            self.close()
+        self.hw_device = None
 
 
 
